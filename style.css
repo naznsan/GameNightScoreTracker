@@ -45,3 +45,7 @@ form button {
 th {
     border-bottom: 2px solid black;
 }
+
+td {
+    text-align: right;
+}

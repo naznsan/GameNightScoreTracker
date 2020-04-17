@@ -1,6 +1,6 @@
 function Player(name) {
 	this.name = name;
-	this.scores = [2, 4, 5];
+	this.scores = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0];
 }
 
 function addPlayer() {
@@ -8,7 +8,9 @@ function addPlayer() {
 	document.getElementById("player-name").value = "";
 	console.log(playerName);
     playersList.push(new Player(playerName));
+
     populateTableNames();
+    populateTableScores();
     return playersList;
 }
 
@@ -41,9 +43,9 @@ function populateTableNames() {
 	});
 }
 
-
-function populateScores() {
+function populateTableScores() {
 	const table = document.getElementById("scores-table");
+	table.innerHTML = "";
 	for (let player of playersList) {
 		let row = table.insertRow();
 		if (player.scores.length == 0) {
@@ -51,11 +53,15 @@ function populateScores() {
 			cell.innerHTML = 0;
 		} else {
 			player.scores.forEach(score => {
-				let cell = row.insertCell(0);
-				cell.innerHTML = score;
+				row.innerHTML += '<td class="score-' + player.name + '">' + score + '</td>';
 			})			
 		}
 	}
+}
+
+function makeEditable() {
+	let x = document.getElementById("scores-table").rows.length;
+	console.log(x);
 }
 
 
@@ -65,4 +71,5 @@ playersList.push(new Player("Player2"));
 playersList.push(new Player("Player3"));
 
 populateTableNames();
-populateScores();
+populateTableScores();
+makeEditable();
