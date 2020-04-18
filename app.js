@@ -1,6 +1,6 @@
 function Player(name) {
 	this.name = name;
-	this.scores = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0];
+	this.scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
 
 function addPlayer() {
@@ -52,16 +52,18 @@ function populateTableScores() {
 			let cell = row.insertCell(0);
 			cell.innerHTML = 0;
 		} else {
-			player.scores.forEach(score => {
-				row.innerHTML += '<td class="score-' + player.name + '">' + score + '</td>';
-			})			
+			for (let i = 0; i < player.scores.length; i++) {
+				row.innerHTML += '<td id="cell-' + (i) + '" class = "score-' + player.name + '" onClick="makeEditable(this.id, this.className)">' + player.scores[i] + '</td>';
+			}		
 		}
 	}
 }
 
-function makeEditable() {
-	let x = document.getElementById("scores-table").rows.length;
-	console.log(x);
+function makeEditable(inputID, elementClass) {
+	let elementID = inputID.slice(5);
+	console.log(elementID, elementClass);
+	let tableRow = document.querySelector("." + elementClass);
+	console.log(tableRow);
 }
 
 
