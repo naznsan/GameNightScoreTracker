@@ -5,54 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Score Tracker</title>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="names-container">
-        <table>
-            <thead>
-                <th>Names</th>
-            </thead>
-            <tbody id="names-table">
-            </tbody>
-        </table>
+    <main>
+        <div id="names-container">
+            <table class="table">
+                <thead>
+                    <th>Names</th>
+                </thead>
+                <tbody id="names-table">
+                </tbody>
+            </table>
 
-        <div id="add-player-container">
-            <input id="player-name" type=text" placeholder="New Player...">
-            <button type="button" id="add-player" onclick="addPlayer()">Add Player</button>
+            <div id="add-player-container">
+                <input id="player-name" type=text" placeholder="New Player..." class="form-control">
+                <button type="button" id="add-player" onclick="addPlayer()" class="btn btn-primary">Add Player</button>
+            </div>
+
         </div>
-        
-    </div>
 
-    <div id="scores-container">
-        <table>
-            <thead>
-                <th>Round 1</th>
-                <th>Round 2</th>
-                <th>Round 3</th>
-                <th>Round 4</th>
-                <th>Round 5</th>
-                <th>Round 6</th>
-                <th>Round 7</th>
-                <th>Round 8</th>
-                <th>Round 9</th>
-                <th>Round 10</th>
-            </thead>
-            <tbody id="scores-table">
-            </tbody>
-        </table>
+        <div id="scores-container">
+            <table class="table">
+                <thead>
+                    <th>Round 1</th>
+                    <th>Round 2</th>
+                    <th>Round 3</th>
+                    <th>Round 4</th>
+                    <th>Round 5</th>
+                    <th>Round 6</th>
+                    <th>Round 7</th>
+                    <th>Round 8</th>
+                    <th>Round 9</th>
+                    <th>Round 10</th>
+                </thead>
+                <tbody id="scores-table">
+                </tbody>
+            </table>
 
-    </div>
+        </div>
 
-    <div id="totals-container">
-        <table>
-            <thead>
-                <th>TOTAL</th>
-            </thead>
-            <tbody id="totals-table">
-            </tbody>
-        </table>
-    </div>
+        <div id="totals-container">
+            <table class="table">
+                <thead>
+                    <th>TOTAL</th>
+                </thead>
+                <tbody id="totals-table">
+                </tbody>
+            </table>
+        </div>
+    </main>
 
     <script src="app.js"></script>
 
