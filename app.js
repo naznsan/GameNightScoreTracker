@@ -8,8 +8,6 @@ function Player(name) {
 	}
 }
 
-
-
 function addPlayer() {
 	let playerName = document.getElementById("player-name").value;
 	document.getElementById("player-name").value = "";
@@ -23,6 +21,7 @@ function addPlayer() {
     populateTableNames();
     populateTableScores();
     calculateTotals();
+    document.getElementById("player-name").focus();
     return playersList;
 }
 
@@ -109,3 +108,11 @@ var playersList = [];
 populateTableNames();
 populateTableScores();
 calculateTotals();
+
+var input = document.getElementById("player-name");
+input.addEventListener("keyup", function(event) {
+	if (event.keyCode === 13) {
+		event.preventDefault();
+		document.getElementById("add-player").click();
+	}
+})
