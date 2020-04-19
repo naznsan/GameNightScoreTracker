@@ -21,30 +21,33 @@ ol, ul {
 
 /* Actual CSS from here */
 
+h1 {
+    margin-top: 1em;
+}
+
 main {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
+    width: 90%;
+    margin: 5em auto;
 }
 
 #names-container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-right: 2em;
+    margin-bottom: 1em;
 }
 
 #names-container th {
-    align-self: center;
+    text-align: center;
 }
 
 #add-player-container {
     display: flex;
     flex-direction: column;
     width: 80%;
-}
-
-#scores-container {
-    margin-right: 2em;
 }
 
 button {
