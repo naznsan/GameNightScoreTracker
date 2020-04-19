@@ -13,6 +13,10 @@ function Player(name) {
 function addPlayer() {
 	let playerName = document.getElementById("player-name").value;
 	document.getElementById("player-name").value = "";
+	if (playerName.length === 0) {
+		alert("Player names must be atleast one character!");
+		return;
+	}
 	console.log(playerName);
     playersList.push(new Player(playerName));
 
