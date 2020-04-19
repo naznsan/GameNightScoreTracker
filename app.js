@@ -1,7 +1,14 @@
 function Player(name) {
 	this.name = name;
 	this.scores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+	this.changeScore = function(newScore, index) {
+		this.scores[index] = parseInt(newScore);
+		return this.scores;
+	}
 }
+
+
 
 function addPlayer() {
 	let playerName = document.getElementById("player-name").value;
@@ -11,15 +18,8 @@ function addPlayer() {
 
     populateTableNames();
     populateTableScores();
+    calculateTotals();
     return playersList;
-}
-
-function addScore(name, score) {
-    playersList.forEach(player => {
-        if (player.name == name) {
-            player.scores.push(score);
-        };
-    });
 }
 
 function getTotal(name) {
@@ -59,19 +59,49 @@ function populateTableScores() {
 	}
 }
 
+function calculateTotals() {
+	const table = document.querySelector("#totals-table");
+	table.innerHTML = "";
+	playersList.forEach(player => {
+		let sum = 0;
+		player.scores.reduce((total, value) => sum += value);
+		let row = table.insertRow();
+		let cell = row.insertCell(0);
+		cell.innerHTML = sum;
+	});
+}
+
 function makeEditable(inputID, elementClass) {
 	let elementID = inputID.slice(5);
-	console.log(elementID, elementClass);
-	let tableRow = document.querySelector("." + elementClass);
-	console.log(tableRow);
+	let clickedCell = document.querySelector("#" + inputID + "." + elementClass);
+	let valCurr = clickedCell.innerHTML;
+	clickedCell.innerHTML = `<input type="number" value="${valCurr}" min="0" onblur="makeNonEditable('${inputID}', '${elementClass}')"></input>`;
+	clickedCell.setAttribute("onClick", null);
+}
+
+function makeNonEditable(inputID, elementClass) {
+	let blurredCell = document.querySelector(`#${inputID}.${elementClass}`);
+	let valNew = blurredCell.firstElementChild.value;
+
+	let cellIndex = inputID.slice(5);
+	let playerName = elementClass.slice(6);
+
+	playersList.forEach(player => {
+		if (player.name == playerName) {
+			player.changeScore(valNew, cellIndex);
+		}
+	});
+
+	populateTableScores();
+	calculateTotals();
 }
 
 
 var playersList = [];
-playersList.push(new Player("Player1"));
-playersList.push(new Player("Player2"));
-playersList.push(new Player("Player3"));
+//playersList.push(new Player("Player1"));
+//playersList.push(new Player("Player2"));
+//playersList.push(new Player("Player3"));
 
 populateTableNames();
 populateTableScores();
-makeEditable();
+calculateTotals();
